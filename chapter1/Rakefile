@@ -1,0 +1,60 @@
+# vim:fileencoding=utf-8
+
+require 'rake/clean'
+require 'rake/packagetask'
+
+require 'tempfile'
+
+# ==================================================
+# CONSTANTS
+# ==================================================
+HOME = File.expand_path("~")
+HERE = Dir::pwd
+
+SOURCE_DIR = "./tex"
+TARGET_DIR = "./png"
+
+TEX_FILES = FileList["#{SOURCE_DIR}/*.tex"]
+PNG_FILES = TEX_FILES.gsub(SOURCE_DIR, TARGET_DIR).ext('png')
+
+HEADER = <<EOS
+\\documentclass{jsarticle}
+\\usepackage{amsmath}
+\\usepackage{amssymb}
+\\usepackage{amsfonts}
+\\pagestyle{empty}
+\\begin{document}
+EOS
+
+FOOTER = <<EOS
+\\end{document}
+EOS
+
+TEX2IMG = "/usr/local/bin/tex2img"
+TEX2IMG_OPTION = "--kanji utf8"
+
+# ==================================================
+# tasks
+# ==================================================
+# default task
+task "default" => "tex2img"
+
+desc "execute tex2img"
+file "tex2img" => PNG_FILES do |t|
+  # nothing generated
+end
+
+desc "generate .png from .tex using tex2img"
+rule ".png" => SOURCE_DIR + "/%n.tex" do |t|
+  file = Tempfile.new('tmp_tex')
+  file.write(HEADER)
+  file.write(t.source + "\n")
+  file.write(FOOTER)
+  file.close
+
+  command = "#{TEX2IMG} #{TEX2IMG_OPTION} #{file.path} #{t}"
+  puts "execute => $#{command}"
+  system command
+
+  file.unlink
+end
