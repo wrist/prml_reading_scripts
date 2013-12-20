@@ -48,7 +48,7 @@ desc "generate .png from .tex using tex2img"
 rule ".png" => SOURCE_DIR + "/%n.tex" do |t|
   file = Tempfile.new('tmp_tex')
   file.write(HEADER)
-  file.write(t.source + "\n")
+  file.write(File::open(t.source,"r").read + "\n")
   file.write(FOOTER)
   file.close
 
