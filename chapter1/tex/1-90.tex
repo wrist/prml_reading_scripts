@@ -1,0 +1,12 @@
+\begin{eqnarray}
+\nonumber \{y({\bf x})-t\}^2 &=& \{y({\bf x}) - \mathbb{E}[t|{\bf x}] + \mathbb{E}[t|{\bf x}] - t\}^2 \\
+\nonumber  &=& \{y({\bf x}) - \mathbb{E}[t|{\bf x}]\}^2 + 2\{y({\bf x}) - \mathbb{E}[t|{\bf x}]\}\{\mathbb{E}[t|{\bf x}] - t\} + \{\mathbb{E}[t|{\bf x}] - t\}^2
+\end{eqnarray}
+
+\begin{equation}
+\nonumber \mathbb{E}[L] = \int \{y({\bf x}) - \mathbb{E}[t | {\bf x}]\}^2 p({\bf x}){\rm d}{\bf x} + \int {\rm var}[t | {\bf x}]p({\bf x}){\rm d}{\bf x}
+\end{equation}
+
+\begin{equation}
+\nonumber {\rm var}[t | {\bf x}] = \int \{t - \mathbb{E}[t | {\bf x}]\}^2 p(t | {\bf x}){\rm d}t
+\end{equation}

@@ -1,0 +1,11 @@
+\begin{eqnarray}
+  \frac{\partial E({\bf w})}{\partial w_i}
+  \nonumber &=&\frac{\partial}{\partial w_i}\left\{ \frac{1}{2}\sum_{n=1}^{N}\{{y(x_{n},{\bf w})-t_{n}}\}^{2}\right\} \\
+  \nonumber &=&\frac{\partial}{\partial w_i}\left\{ \frac{1}{2}\sum_{n=1}^{N}\{{y(x_{n},{\bf w})^2-2y(x_{n},{\bf w})t_{n}+t_{n}^2}\}\right\} \\
+  \nonumber &=&\frac{\partial}{\partial w_i}\left\{ \frac{1}{2}\sum_{n=1}^{N}\{{y(x_{n},{\bf w})^2-2y(x_{n},{\bf w})t_{n}}\}\right\} \\
+  \nonumber &=&\frac{\partial}{\partial w_i}\left\{
+    \frac{1}{2}\sum_{n=1}^{N}\left\{{\left( \sum_{j=0}^{M}w_j x_n^j \right)^2-2t_{n}\sum_{j=0}^{M}w_j x_n^j}\right\}
+  \right\} \\
+  \nonumber &=& \frac{1}{2}\sum_{n=1}^{N}\left\{2w_i \sum_{j=0}^{M}x_n^{i+j} - 2t_{n}x_n^i\right\} \\
+  \nonumber &=& {w_i\sum_{n=1}^{N}\sum_{j=0}^{M}x_n^{i+j} - \sum_{n=1}^{N}t_{n}x_n^i}
+\end{eqnarray}
